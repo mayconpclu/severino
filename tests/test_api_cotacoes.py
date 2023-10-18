@@ -11,7 +11,7 @@ from tests.mock.mock_resposta import MockResposta
 from tests.tests_dsl import replace, assert_should_raise
 
 class TestAPICotacoes():
-    @replace('source.helpers.api_cotacoes.get', MockResposta, lambda mock_get: mock_get.assert_called_once_with('https://economia.awesomeapi.com.br/json/available/uniq'))
+    @replace('source.helpers.api_cotacoes.get', MockResposta, lambda mock_get: mock_get.assert_called_once_with('https://economia.awesomeapi.com.br/json/available/uniq', timeout=10))
     def test_lista_moedas_deve_retornar_valores_da_api(self, mock_resposta: MockResposta) -> None:
         running_loop = new_event_loop()
         mock_resposta.status_code = 200
@@ -75,8 +75,8 @@ class TestAPICotacoes():
 
         assert valor == 123
         mock_get.assert_has_calls([
-            call('https://economia.awesomeapi.com.br/json/available/uniq'),
-            call('https://economia.awesomeapi.com.br/json/last/FOO-BRL'),
+            call('https://economia.awesomeapi.com.br/json/available/uniq', timeout=10),
+            call('https://economia.awesomeapi.com.br/json/last/FOO-BRL', timeout=10)
         ])
 
     @assert_should_raise(MoedaInvalida)

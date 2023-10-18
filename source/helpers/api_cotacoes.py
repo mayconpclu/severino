@@ -34,7 +34,7 @@ class APICotacoes():
 
     async def __try_download_json(self, endpoint: str) -> Any:
         try:
-            resposta = get(endpoint)
+            resposta = get(endpoint, timeout=10)
             return self.__extrair_json(resposta)
         except Exception:
             raise FalhaDownload()
