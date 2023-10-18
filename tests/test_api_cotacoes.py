@@ -10,6 +10,7 @@ from source.helpers.api_cotacoes import APICotacoes
 from tests.mock.mock_resposta import MockResposta
 from tests.tests_dsl import replace, assert_should_raise
 
+# pylint: disable=missing-function-docstring
 class TestAPICotacoes():
     @replace('source.helpers.api_cotacoes.get', MockResposta, lambda mock_get: mock_get.assert_called_once_with('https://economia.awesomeapi.com.br/json/available/uniq', timeout=10))
     def test_lista_moedas_deve_retornar_valores_da_api(self, mock_resposta: MockResposta) -> None:

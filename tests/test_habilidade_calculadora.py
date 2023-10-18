@@ -3,8 +3,9 @@ from pytest import ExceptionInfo
 from source.excecoes.formato_desconhecido import FormatoDesconhecido
 from source.habilidades.habilidade_calculadora import HabilidadeCalculadora
 from tests.spy.io_manager_spy import IOManagerSpy
-from tests.tests_dsl import assert_should_raise
+from tests.tests_dsl import assert_should_raise, assert_io_manager_not_called
 
+# pylint: disable=missing-function-docstring
 class TestHabilidadeCalculadora():
     def test_textos_ajuda_deve_retornar_textos_de_ajuda(self) -> None:
         spy = IOManagerSpy()
@@ -12,10 +13,7 @@ class TestHabilidadeCalculadora():
 
         textos = habilidade.textos_ajuda
 
-        assert spy.iniciar_chamado is False
-        assert spy.handler_leitura_passado is None
-        assert spy.imprimir_chamado_count == 0
-        assert spy.mensagens_passadas == []
+        assert_io_manager_not_called(spy)
         assert textos == [
             'Consigo resolver cálculos no formato: operando_1 operador operando_2',
             '\toperando_1 e operando_2 devem ser números;',

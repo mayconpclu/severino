@@ -1,5 +1,7 @@
 from typing import Optional
 
+# desabilitando raising-bad-type porque o pylint nao consegue interpretar que as excecoes so serao raised caso not None
+# pylint: disable=missing-function-docstring,raising-bad-type,too-many-instance-attributes
 class APICotacoesSpy():
     @property
     async def lista_moedas(self) -> list[str]:

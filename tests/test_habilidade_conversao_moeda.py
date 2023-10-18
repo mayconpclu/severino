@@ -9,6 +9,7 @@ from tests.tests_dsl import replace, assert_should_raise
 from tests.spy.api_cotacoes_spy import APICotacoesSpy
 from tests.spy.io_manager_spy import IOManagerSpy
 
+# pylint: disable=missing-function-docstring
 class TestHabilidadeConversaoMoeda():
     __running_loop = new_event_loop()
 

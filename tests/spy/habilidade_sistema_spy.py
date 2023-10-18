@@ -2,6 +2,7 @@ from typing import Optional
 
 from source.modelos.habilidade import Habilidade
 
+# pylint: disable=missing-function-docstring
 class HabilidadeSistemaSpy(Habilidade):
     @property
     def textos_ajuda(self) -> list[str]:

@@ -4,6 +4,7 @@ import os
 
 from tests.tests_dsl import replace
 
+# pylint: disable=missing-function-docstring
 class TestMain():
     # a def __init__ deve retornar None
     @replace('source.severino.Severino.__init__', None, lambda init_mock: init_mock.assert_called_once())

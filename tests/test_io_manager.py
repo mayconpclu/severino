@@ -4,6 +4,7 @@ from pytest import CaptureFixture
 
 from source.io_manager import IOManager
 
+# pylint: disable=missing-function-docstring
 class TestIOManager():
     def test_iniciar_deve_imprimir_numero_da_linha(self, capsys: CaptureFixture[str]) -> None:
         io_manager = IOManager()

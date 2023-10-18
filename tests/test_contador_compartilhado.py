@@ -2,6 +2,7 @@ from threading import Thread
 
 from source.helpers.contador_compartilhado import ContadorCompartilhado
 
+# pylint: disable=missing-function-docstring
 class TestContadorCompartilhado():
     def test_recuperar_deve_retornar_valor(self) -> None:
         contador = ContadorCompartilhado(3)

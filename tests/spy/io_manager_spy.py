@@ -2,6 +2,7 @@ from typing import Optional
 
 from source.io_manager import IOManager, HandlerLeitura
 
+# pylint: disable=missing-function-docstring
 class IOManagerSpy(IOManager):
     @property
     def iniciar_chamado(self) -> bool:
@@ -19,6 +20,8 @@ class IOManagerSpy(IOManager):
     def mensagens_passadas(self) -> list[str]:
         return self.__mensagens_passadas
 
+    # desabilitando regra porque nao queremos inicializar a classe pai
+    # pylint: disable=super-init-not-called
     def __init__(self) -> None:
         self.__iniciar_chamado = False
         self.__handler_leitura_passado: Optional[HandlerLeitura] = None

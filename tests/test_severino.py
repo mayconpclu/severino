@@ -8,6 +8,7 @@ from tests.spy.habilidade_sistema_spy import HabilidadeSistemaSpy
 from tests.spy.io_manager_spy import IOManagerSpy
 from tests.tests_dsl import replace
 
+# pylint: disable=missing-function-docstring
 class TestSeverino():
     @replace('source.severino.IOManager', IOManagerSpy)
     def test_init_deve_iniciar_servicos(self, io_manager_mock: IOManagerSpy) -> None:

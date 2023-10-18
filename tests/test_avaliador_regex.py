@@ -5,6 +5,7 @@ from source.excecoes.expressao_invalida import ExpressaoInvalida
 from source.helpers.avaliador_regex import AvaliadorRegex
 from source.modelos.regex_grupo_interesse import RegexGrupoInteresse
 
+# pylint: disable=missing-function-docstring
 class TestAvaliadorRegex():
     __REGEX_INT_CHAR_INT = r'^(\d)([A-Za-z])(\d)$'
 
