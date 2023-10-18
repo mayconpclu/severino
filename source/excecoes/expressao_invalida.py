@@ -1,0 +1,2 @@
+class ExpressaoInvalida(Exception):
+    pass

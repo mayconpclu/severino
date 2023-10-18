@@ -1,0 +1,2 @@
+class FalhaDownload(Exception):
+    pass

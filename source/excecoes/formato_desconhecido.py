@@ -1,0 +1,2 @@
+class FormatoDesconhecido(Exception):
+    pass
