@@ -3,6 +3,7 @@ PIP = $(VENV)/bin/pip
 PYTHON = $(VENV)/bin/python
 MYPY = $(VENV)/bin/mypy
 PYTEST = $(VENV)/bin/pytest
+PYLINT = $(VENV)/bin/pylint
 
 all:
 	$(PYTHON) source/main.py
@@ -13,3 +14,5 @@ mypy:
 	$(MYPY) source tests --config-file configs/mypy.ini
 pytest:
 	$(PYTEST) --cov-report term-missing:skip-covered --cov=source
+pylint:
+	$(PYLINT) source/* tests/* --rcfile=configs/.pylintrc

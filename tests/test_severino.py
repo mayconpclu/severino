@@ -60,7 +60,7 @@ class TestSeverino():
     @replace('source.severino.IOManager', IOManagerSpy)
     @replace('source.severino.HabilidadeCalculadora', HabilidadeMock)
     @replace('source.severino.HabilidadeConversaoMoeda', HabilidadeMock)
-    def test_get_textos_ajuda_deve_pedir_textos_de_ajuda_para_habilidades(self, mock_construtor_habilidade_sistema: Mock, *args: tuple[Any]) -> None:
+    def test_get_textos_ajuda_deve_pedir_textos_de_ajuda_para_habilidades(self, mock_construtor_habilidade_sistema: Mock, *_: tuple[Any]) -> None:
         habilidade_mock = HabilidadeSistemaSpy()
         habilidade_mock.textos_para_retornar = ['foo', 'bar']
         mock_construtor_habilidade_sistema.return_value = habilidade_mock
