@@ -1,3 +1,4 @@
+python = $(shell which python3)
 VENV = venv
 PIP = $(VENV)/bin/pip
 PYTHON = $(VENV)/bin/python
@@ -7,7 +8,8 @@ PYTEST = $(VENV)/bin/pytest
 all:
 	$(PYTHON) source/main.py
 setup:
-	python -m venv $(VENV)
+	$(python) -m venv $(VENV)
+	$(PIP) install --upgrade setuptools
 	$(PIP) install install -e .
 mypy:
 	$(MYPY) source tests --config-file configs/mypy.ini
