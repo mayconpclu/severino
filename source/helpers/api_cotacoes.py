@@ -25,14 +25,14 @@ class APICotacoes():
 
     def __init__(self, running_loop: AbstractEventLoop) -> None:
         self.__moedas: dict[str, str] = {}
-        self.__task_download_moedas = running_loop.create_task(self.__download_moedas())
+        self.__task_download_moedas = running_loop.run_in_executor(None, self.__download_moedas)
 
-    async def __download_moedas(self) -> None:
-        moedas_json = dict[str, str](await self.__try_download_json(APICotacoes.__ENDPOINT_LISTA_MOEDAS))
+    def __download_moedas(self) -> None:
+        moedas_json = dict[str, str](self.__try_download_json(APICotacoes.__ENDPOINT_LISTA_MOEDAS))
         for codigo_moeda, nome_moeda in moedas_json.items():
             self.__adicionar_moeda_se_necessario(codigo_moeda, nome_moeda)
 
-    async def __try_download_json(self, endpoint: str) -> Any:
+    def __try_download_json(self, endpoint: str) -> Any:
         try:
             resposta = get(endpoint, timeout=10)
             return self.__extrair_json(resposta)
@@ -52,14 +52,14 @@ class APICotacoes():
 
     async def obter_cotacao(self, codigo_moeda: str) -> float:
         """
-        Busca, de maneira assíncrona a cotação atual da moeda.\n
+        Busca a cotação atual da moeda.\n
         Caso o código recebido seja inválido, a exceção `MoedaInvalida` é lançada.
         """
         codigo = codigo_moeda.upper()
         if not await self.__checar_se_moeda_valida(codigo):
             raise MoedaInvalida()
         endpoint = self.__gerar_endpoint_conversao(codigo)
-        resposta_json = dict[str, Any](await self.__try_download_json(endpoint))
+        resposta_json = dict[str, Any](self.__try_download_json(endpoint))
         return self.__extrair_valor_compra(resposta_json)
 
     async def __checar_se_moeda_valida(self, codigo_moeda: str) -> bool:
