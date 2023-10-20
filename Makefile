@@ -11,7 +11,7 @@ all:
 setup:
 	$(python) -m venv $(VENV)
 	$(PIP) install --upgrade setuptools
-	$(PIP) install install -e .
+	$(PIP) install -e .
 mypy:
 	$(MYPY) source tests --config-file configs/mypy.ini
 pytest:
