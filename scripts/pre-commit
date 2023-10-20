@@ -1,0 +1,37 @@
+# Encontrar arquivos .py adicionados/modificados
+
+# executa o comando git diff exibindo apenas o nome do arquivo,
+# apenas arquivos staged (via git add),
+# filtra arquivos removidos
+ARQUIVOS=`git diff --name-only --cached --diff-filter=d`
+# roda o script utilizando o python do ambiente virtual
+ARQUIVOS_PY=`venv/bin/python scripts/arquivos_py_modificados.py "$ARQUIVOS"`
+
+# se ARQUIVOS_PY esta vazio, retorna sucesso (0)
+if [ -z "$ARQUIVOS_PY" ]; then
+    echo "\nNenhum arquivo .py modificado - pulando mypy e pylint.\n"
+    exit 0;
+fi
+
+# Mypy
+echo "--------------- 1. Mypy ---------------"
+venv/bin/mypy "$ARQUIVOS_PY" --config-file configs/mypy.ini
+# verifica o return code do ultimo comando (no caso, mypy)
+# se for != 0 (falha), aborta o commit retornando erro (1)
+if [ "$?" != "0" ]; then
+    echo "\nArrume os erros do Mypy antes de prosseguir.\n";
+    exit 1;
+fi
+
+# Pylint
+echo "-------------- 2. Pylint -------------"
+venv/bin/pylint --rcfile=configs/.pylintrc "$ARQUIVOS_PY"
+# verifica o return code do ultimo comando (no caso, pylint)
+# se for != 0 (falha), aborta o commit retornando erro (1)
+if [ "$?" != "0" ]; then
+    echo "\nArrume os erros do Pylint antes de prosseguir.\n";
+    exit 1;
+fi
+
+# Sucesso
+echo "\n"
