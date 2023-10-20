@@ -78,8 +78,7 @@ class APICotacoes():
         Retorna o nome da moeda para o código recebido.\n
         Lança a exceção `MoedaInvalida` caso a moeda não seja encontrada.
         """
-        await self.__task_download_moedas
         codigo_moeda = codigo.upper()
-        if codigo_moeda not in self.__moedas:
+        if not await self.__checar_se_moeda_valida(codigo_moeda):
             raise MoedaInvalida()
         return self.__moedas[codigo_moeda]
