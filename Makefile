@@ -12,6 +12,8 @@ setup:
 	$(python) -m venv $(VENV)
 	$(PIP) install --upgrade setuptools
 	$(PIP) install -e .
+	cp scripts/pre-commit .git/hooks
+	chmod 777 .git/hooks/pre-commit
 mypy:
 	$(MYPY) source tests --config-file configs/mypy.ini
 pytest:
