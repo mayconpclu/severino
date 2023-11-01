@@ -66,7 +66,7 @@ class TestHabilidadeConversaoMoeda():
 
         habilidade.execute_ou_raise('a para USD')
 
-        assert io_manager_spy.iniciar_chamado == False
+        assert io_manager_spy.iniciar_chamado is False
         assert io_manager_spy.handler_leitura_passado is None
         assert io_manager_spy.imprimir_chamado_count == 0
         assert not io_manager_spy.mensagens_passadas

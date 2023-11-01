@@ -10,5 +10,6 @@ setup(
         'pytest-cov',
         'requests',
         'types-requests',
+        'pylint',
     ]
 )
