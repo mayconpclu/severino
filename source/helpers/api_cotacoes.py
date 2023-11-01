@@ -21,7 +21,7 @@ class APICotacoes():
         return self.__transformar_moedas_em_lista()
 
     def __transformar_moedas_em_lista(self) -> list[str]:
-        return [f'{chave}: {self.__moedas[chave]}' for chave in self.__moedas.keys()]
+        return [f'{chave}: {valor}' for chave, valor in self.__moedas.items()]
 
     def __init__(self, running_loop: AbstractEventLoop) -> None:
         self.__moedas: dict[str, str] = {}
