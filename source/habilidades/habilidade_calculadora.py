@@ -24,7 +24,7 @@ class HabilidadeCalculadora(Habilidade):
 
     def __init__(self, io_manager: IOManager) -> None:
         self.__io_manager = io_manager
-        self.__avaliador_regex = AvaliadorRegex(HabilidadeCalculadora.REGEX_ACEITACAO, [
+        self.__avaliador_regex = AvaliadorRegex(HabilidadeCalculadora.__REGEX_ACEITACAO, [
             RegexGrupoInteresse(HabilidadeCalculadora.__INDEX_NUMERAL_A_ESQUERDA, float),
             RegexGrupoInteresse(HabilidadeCalculadora.__INDEX_OPERADOR, str),
             RegexGrupoInteresse(HabilidadeCalculadora.__INDEX_NUMERAL_A_DIREITA, float),
